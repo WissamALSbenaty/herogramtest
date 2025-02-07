@@ -3,11 +3,12 @@ import 'package:herogram/core/presentation/app_style.dart';
 import 'package:herogram/core/presentation/arguments/metric_details_page_arguments.dart';
 import 'package:herogram/core/presentation/router/auto_router.dart';
 import 'package:herogram/core/presentation/widgets/custom_animated_text.dart';
+import 'package:herogram/features/home/presentation/widgets/arc_widget.dart';
 
-class MetricTile extends StatelessWidget {
+class PercentageMetricTile extends StatelessWidget {
   final String metricName;
-  final int metricValue;
-  const MetricTile({Key? key, required this.metricName,required this.metricValue}) : super(key: key);
+  final double metricValue;
+  const PercentageMetricTile({Key? key, required this.metricName,required this.metricValue}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,8 @@ class MetricTile extends StatelessWidget {
       onTap: ()=>getAppRouter.push(MetricDetailsRoute(args: MetricDetailsPageArguments(metricName: metricName,
           metricValue: metricValue))),
       tileColor: AppStyle.lightPink,
+      leading: ArcWidget(percentage: metricValue),
       title:  Hero(
-
         tag: metricName,
         child:
         Material(
@@ -27,7 +28,7 @@ class MetricTile extends StatelessWidget {
           tag: metricValue.toString(),
           child: Material(
               type: MaterialType.transparency,
-              child: CustomAnimatedText(metricValue.toString(),style: AppStyle.textTheme.bodyMedium))),
+              child: CustomAnimatedText('%${metricValue.floor().toString()}',style: AppStyle.textTheme.bodyMedium))),
     );
   }
 }

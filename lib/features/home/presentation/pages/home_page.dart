@@ -6,6 +6,7 @@ import 'package:herogram/core/presentation/widgets/object_data_loader_widget.dar
 import 'package:herogram/dependencies.dart';
 import 'package:herogram/features/home/controllers/metrics_controller.dart';
 import 'package:herogram/features/home/presentation/widgets/metric_tile.dart';
+import 'package:herogram/features/home/presentation/widgets/percentage_metric_tile.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                   CustomSizedBox(height: 8,),
                   MetricTile(metricName: 'Active Users',metricValue:data.activeUsers,),
                   CustomSizedBox(height: 8,),
-                  MetricTile(metricName: 'Conversion Rate',metricValue:'%${data.conversionRate.floor()}',),
+                  PercentageMetricTile(metricName: 'Conversion Rate',metricValue:data.conversionRate,),
                 ],
               ),
           ))
